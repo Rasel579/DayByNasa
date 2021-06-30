@@ -10,5 +10,6 @@
 /app/src/test
 /captures
 .externalNativeBuild
+apikey.properties
 .cxx
 local.properties
