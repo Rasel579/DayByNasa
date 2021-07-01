@@ -1,5 +1,6 @@
 package com.app_maker.view_models
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app_maker.models.Repository
@@ -10,8 +11,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel(
-   val liveData: MutableLiveData<Any> = MutableLiveData(),
-   val repository: Repository = RepositoryImpl()
+    val liveData: MutableLiveData<Any> = MutableLiveData(),
+    private val repository: Repository = RepositoryImpl()
 ) : ViewModel() {
      fun loadDataFromApi(){
        liveData.value = AppState.Loading
@@ -25,8 +26,9 @@ class MainViewModel(
            }
            override fun onFailure(call: Call<NasaPictureDTO>, t: Throwable) {
                t.printStackTrace()
+
            }
        }
-       repository.getDataFromApi(callbackFromRetrofit)
+         repository.getDataFromApi(callbackFromRetrofit)
      }
 }

@@ -7,11 +7,10 @@ import java.util.concurrent.TimeUnit
 
 object ApiUtils {
     val baseUrl = baseNasaUrl
-    val duration = 2000L
+    val duration = 1000L
     fun getOkHTTPBuilderWithHeaders() : OkHttpClient {
         val httpClient =  OkHttpClient.Builder()
         httpClient.apply {
-           dns(Dns.SYSTEM)
            connectTimeout(duration, TimeUnit.MILLISECONDS)
            readTimeout(duration, TimeUnit.MILLISECONDS)
            writeTimeout(duration, TimeUnit.MILLISECONDS)
