@@ -14,7 +14,7 @@ class MainViewModel(
     val liveData: MutableLiveData<Any> = MutableLiveData(),
     private val repository: Repository = RepositoryImpl()
 ) : ViewModel() {
-     fun loadDataFromApi(){
+     fun loadDataFromApi(date : String){
        liveData.value = AppState.Loading
        val callbackFromRetrofit = object : Callback<NasaPictureDTO> {
            override fun onResponse(call: Call<NasaPictureDTO>, response: Response<NasaPictureDTO>) {
@@ -29,6 +29,6 @@ class MainViewModel(
 
            }
        }
-         repository.getDataFromApi(callbackFromRetrofit)
+         repository.getDataFromApiPrevDatePic(date, callbackFromRetrofit)
      }
 }

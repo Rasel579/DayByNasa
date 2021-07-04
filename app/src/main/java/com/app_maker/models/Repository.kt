@@ -5,4 +5,5 @@ import retrofit2.Callback
 
 interface Repository {
     fun getDataFromApi(callback : Callback<NasaPictureDTO>)
+    fun getDataFromApiPrevDatePic(date : String, callback : Callback<NasaPictureDTO>)
 }
