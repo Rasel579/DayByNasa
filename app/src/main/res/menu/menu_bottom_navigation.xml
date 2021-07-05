@@ -4,10 +4,10 @@
         <item
             android:id="@+id/navigation_one"
             android:icon="@android:drawable/ic_menu_camera"
-            android:title="On the Screen One" />
+            android:title="@string/navigation_drawer_first_menu_string" />
         <item
             android:id="@+id/navigation_two"
             android:icon="@android:drawable/ic_menu_myplaces"
-            android:title="On the Screen" />
+            android:title="@string/navigation_drawer_second_menu_string" />
     </group>
 </menu>

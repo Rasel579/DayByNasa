@@ -13,4 +13,6 @@
     <string name="chip_previous_day_text">Previous Day</string>
     <string name="chip_info_day_text">Info Day</string>
     <string name="Menu_Toast_Text">Favorite menu</string>
+    <string name="navigation_drawer_first_menu_string">Change On the Red Light Theme</string>
+    <string name="navigation_drawer_second_menu_string">Change Theme On Dark Space</string>
 </resources>

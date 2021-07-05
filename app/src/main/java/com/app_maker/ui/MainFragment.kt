@@ -1,5 +1,6 @@
 package com.app_maker.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -34,6 +35,8 @@ class MainFragment : Fragment() {
     private lateinit var data : NasaPictureDTO
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding : MainFragmentBinding
+    var datePrevDay: String = DATE
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,8 +54,8 @@ class MainFragment : Fragment() {
         searchOnWikiListener()
         setBottomAppBar(view)
         view?.let { setBottomSheetBehaviour(it.findViewById(R.id.bottom_sheet_container)) }
-        onDayClickListener(binding.prevDay, DATE_PRE_DAY)
-        onDayClickListener(binding.currentDay, DATE)
+        onDayClickListener(binding.prevDay)
+        onDayClickListener(binding.currentDay)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -77,9 +80,15 @@ class MainFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun onDayClickListener(prevDay: Chip, date: String)= with(binding) {
+    private fun onDayClickListener(prevDay: Chip)= with(binding) {
         prevDay.setOnClickListener{
-            viewModel.loadDataFromApi(date)
+            if(prevDay == currentDay){
+                viewModel.loadDataFromApi(DATE)
+                datePrevDay = DATE
+            } else{
+                datePrevDay = LocalDate.parse(datePrevDay).minusDays(1).toString()
+                viewModel.loadDataFromApi(datePrevDay)
+            }
         }
     }
     private  fun setBottomAppBar(view: View?)= with(binding){
@@ -129,10 +138,11 @@ class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
+        const val sharedPreferenceName = "isSecondaryTheme"
+        const val isSecondaryTheme = "isSecondaryTheme"
         private var isMain = true
         private const val TAG = "Bottom_Sheet"
+        @SuppressLint("SimpleDateFormat")
         private val DATE = SimpleDateFormat("yyyy-MM-dd").format(Date())
-        @RequiresApi(Build.VERSION_CODES.O)
-        private val DATE_PRE_DAY = LocalDate.parse(DATE).minusDays(1).toString()
     }
 }
