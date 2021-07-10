@@ -14,9 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import coil.api.load
+import com.app_maker.EARTH_PIC_URL
+import com.app_maker.MOON_PIC_URL
 import com.app_maker.MainActivity
 import com.app_maker.R
 import com.app_maker.databinding.MainFragmentBinding
+import com.app_maker.extensions.Navigation
 import com.app_maker.models.rest.NasaPictureDTO
 import com.app_maker.view_models.AppState
 import com.app_maker.view_models.MainViewModel
@@ -25,8 +28,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.bottomsheet_layout.*
 import kotlinx.android.synthetic.main.main_fragment.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MainFragment : Fragment() {
@@ -35,6 +40,8 @@ class MainFragment : Fragment() {
     private lateinit var data : NasaPictureDTO
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding : MainFragmentBinding
+    private var day = 0
+    private val DAY_IN_MILLIS = 86400000
     var datePrevDay: String = DATE
 
     override fun onCreateView(
@@ -65,8 +72,12 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.app_bar_fav -> Toast.makeText(context, getString(R.string.Menu_Toast_Text), Toast.LENGTH_SHORT).show()
-            R.id.app_bar_search ->Toast.makeText(context, getString(R.string.Menu_Toast_Text), Toast.LENGTH_SHORT).show()
+            R.id.app_bar_fav -> {
+                Navigation.navigate(this, R.id.container, EarthFragment.newInstance())
+            }
+            R.id.home_app_bar ->{
+                Navigation.navigate(this, R.id.container, ViewPagerFragment.newInstance())
+            }
             android.R.id.home -> activity?.let {
                 BottomNavigationDrawerFragment().show(it.supportFragmentManager, TAG)
             }
@@ -79,14 +90,16 @@ class MainFragment : Fragment() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun onDayClickListener(prevDay: Chip)= with(binding) {
         prevDay.setOnClickListener{
             if(prevDay == currentDay){
                 viewModel.loadDataFromApi(DATE)
                 datePrevDay = DATE
+                day = 0
             } else{
-                datePrevDay = LocalDate.parse(datePrevDay).minusDays(1).toString()
+                day++
+                datePrevDay = SimpleDateFormat("yyyy-MM-dd").format( Date().time.minus(day* DAY_IN_MILLIS))
+                Log.e("date_format", datePrevDay)
                 viewModel.loadDataFromApi(datePrevDay)
             }
         }
@@ -140,6 +153,7 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
         const val sharedPreferenceName = "isSecondaryTheme"
         const val isSecondaryTheme = "isSecondaryTheme"
+        const val PLANET_BUNDLE = "Planet Bundle"
         private var isMain = true
         private const val TAG = "Bottom_Sheet"
         @SuppressLint("SimpleDateFormat")

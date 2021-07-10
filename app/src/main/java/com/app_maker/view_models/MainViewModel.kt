@@ -18,7 +18,7 @@ class MainViewModel(
        liveData.value = AppState.Loading
        val callbackFromRetrofit = object : Callback<NasaPictureDTO> {
            override fun onResponse(call: Call<NasaPictureDTO>, response: Response<NasaPictureDTO>) {
-               if (response.isSuccessful){
+               if (response.isSuccessful && response.body() != null){
                    liveData.postValue(
                        response.body()?.let { AppState.Success(it) }
                    )
