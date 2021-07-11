@@ -1,7 +1,6 @@
 package com.app_maker.models.rest
 
 import com.app_maker.baseNasaUrl
-import okhttp3.Dns
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 

@@ -1,14 +1,11 @@
 package com.app_maker.ui
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.app_maker.R
 import com.app_maker.databinding.FragmentViewpagerBinding
@@ -18,7 +15,6 @@ import com.app_maker.ui.iteractors.ZoomOutPageTransformer
 import com.app_maker.view_models.AppState
 import com.app_maker.view_models.ViewPagerViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_viewpager.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,7 +29,6 @@ class ViewPagerFragment : Fragment() {
 
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,7 +71,7 @@ class ViewPagerFragment : Fragment() {
     companion object {
         fun newInstance() = ViewPagerFragment()
         private val data = mapOf("Mars" to 0, "Earth" to 1, "Moon" to 2)
-        private val DAY_IN_MILLIS = 86400000
+        private const val DAY_IN_MILLIS = 86400000
         private val DATE = SimpleDateFormat("yyyy/MM/dd").format( Date().time.minus(2* DAY_IN_MILLIS))
 
 

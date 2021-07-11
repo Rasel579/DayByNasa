@@ -1,7 +1,6 @@
 package com.app_maker.ui
 
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +14,8 @@ import com.app_maker.models.rest.MarsMutableApiDTO
 import com.app_maker.models.rest.NasaEpicDTO
 import com.app_maker.parseURL
 import kotlinx.android.synthetic.main.item_layout.view.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ViewPagerAdapter(
     private val earthData: MutableList<NasaEpicDTO>?,
@@ -33,9 +32,8 @@ class ViewPagerAdapter(
 
     override fun getItemCount(): Int = 3
     inner class PagerVH(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        @RequiresApi(Build.VERSION_CODES.O)
-        private val DATE = LocalDateTime.now().minusDays(2).format(DateTimeFormatter.ofPattern("yyyy/MM/dd")).toString()
-        @RequiresApi(Build.VERSION_CODES.O)
+        private val DAY_IN_MILLIS = 86400000
+        private val DATE = SimpleDateFormat("yyyy-MM-dd").format( Date().time.minus(2* DAY_IN_MILLIS))
         fun setData(position: Int) {
             when(position){
                 0 -> {

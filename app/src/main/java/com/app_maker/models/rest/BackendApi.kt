@@ -1,6 +1,5 @@
 package com.app_maker.models.rest
 
-import com.app_maker.BuildConfig
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
