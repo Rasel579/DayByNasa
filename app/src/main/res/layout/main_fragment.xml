@@ -11,12 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.motion.widget.MotionLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/normal_padding"
-            tools:context=".ui.MainFragment">
+            tools:context=".ui.MainFragment"
+            app:layoutDescription="@xml/main_fragment_scene">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/wiki_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="9dp"
+                app:srcCompat="@drawable/ic_wikipedia"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout"
+                app:layout_constraintTop_toTopOf="@id/input_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
             <LinearLayout
                 android:id="@+id/chips_group"
@@ -51,7 +64,7 @@
             <ImageView
                 android:id="@+id/picture_of_the_day"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:contentDescription="@string/picture_of_the_day_description"
                 android:elevation="5dp"
                 android:fitsSystemWindows="true"
@@ -59,30 +72,28 @@
                 android:src="@drawable/ic_no_photo_vector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.9"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHeight_percent="0.765"
                 app:layout_constraintTop_toBottomOf="@+id/chips_group" />
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:hint="@string/search_on_wiki"
-
-                app:endIconDrawable="@android:drawable/ic_menu_search"
+                app:endIconDrawable="@drawable/ic_wikipedia"
                 app:endIconMode="custom"
                 app:helperText="@string/helper_wiki_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/nasa_image"
+              >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
     </androidx.core.widget.NestedScrollView>
 
     <include

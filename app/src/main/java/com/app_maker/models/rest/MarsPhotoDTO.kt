@@ -7,5 +7,6 @@ data class MarsPhotoDTO(
     @SerializedName("earth_date")
     val earthDate: String,
     @SerializedName("img_src")
-    val srcImg : String
+    val srcImg : String,
+    val camera : Map<String,String>
 )

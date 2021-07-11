@@ -72,7 +72,7 @@ class ViewPagerFragment : Fragment() {
         fun newInstance() = ViewPagerFragment()
         private val data = mapOf("Mars" to 0, "Earth" to 1, "Moon" to 2)
         private const val DAY_IN_MILLIS = 86400000
-        private val DATE = SimpleDateFormat("yyyy/MM/dd").format( Date().time.minus(2* DAY_IN_MILLIS))
+        private val DATE = SimpleDateFormat("yyyy/MM/dd").format( Date().time.minus(1* DAY_IN_MILLIS))
 
 
     }
