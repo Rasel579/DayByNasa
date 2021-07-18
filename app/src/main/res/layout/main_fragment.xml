@@ -60,7 +60,6 @@
                     android:text="@string/chip_info_day_text"/>
 
             </LinearLayout>
-
             <ImageView
                 android:id="@+id/picture_of_the_day"
                 android:layout_width="match_parent"
@@ -69,11 +68,35 @@
                 android:elevation="5dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="fitXY"
+                android:visibility="visible"
                 android:src="@drawable/ic_no_photo_vector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.765"
                 app:layout_constraintTop_toBottomOf="@+id/chips_group" />
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/video_of_the_day"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:showFullScreenButton="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chips_group" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/play_pause_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/play_pause_circle"
+                android:backgroundTint="@color/white"
+                android:checked="true"
+                android:contentDescription="@null"
+                android:thumb="@null"
+                app:layout_constraintVertical_bias="0.9"
+                app:layout_constraintBottom_toBottomOf="@id/video_of_the_day"
+                app:layout_constraintEnd_toEndOf="@id/video_of_the_day"
+                app:layout_constraintStart_toStartOf="@id/video_of_the_day"
+                app:layout_constraintTop_toTopOf="@+id/video_of_the_day"/>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -115,5 +138,19 @@
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottom_app_bar"
         android:contentDescription="TODO" />
+    <FrameLayout
+        android:id="@+id/loading_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/icon_text_color"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLargeInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

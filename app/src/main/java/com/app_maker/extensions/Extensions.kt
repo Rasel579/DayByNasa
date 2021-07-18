@@ -10,3 +10,5 @@ fun parseURL(url: String) : String {
     val newUrl = url.subSequence(4, url.length)
     return "https${newUrl}"
 }
+
+fun parseVideo(url: String) =  url.substring(30, url.indexOf("?"))
