@@ -10,4 +10,7 @@ interface Repository {
     fun getDataFromApiPrevDatePic(date : String, callback : Callback<NasaPictureDTO>)
     fun getDataFromEPICNasaApi(date: String, callback: Callback<MutableList<NasaEpicDTO>>)
     fun getDataFromMarsApi(callback: Callback<MarsMutableApiDTO>)
+    fun getNoteData() : List<NoteData>
+    fun sendData(notes : NoteData)
+    fun getFakeDataNotes() : MutableList<NoteData>
 }

@@ -1,5 +1,7 @@
 package com.app_maker
 
+import com.app_maker.models.NoteData
+
 
 const val baseNasaUrl = "https://api.nasa.gov/"
 const val EARTH_PIC_URL = "https://images-assets.nasa.gov/image/a-sky-view-of-earth-from-suomi-npp_16611703184_o/a-sky-view-of-earth-from-suomi-npp_16611703184_o~orig.jpg"
@@ -12,3 +14,7 @@ fun parseURL(url: String) : String {
 }
 
 fun parseVideo(url: String) =  url.substring(30, url.indexOf("?"))
+
+ val nasaFakeNotes =  mutableListOf<NoteData>(NoteData("21.07.2021", "first text"),
+    NoteData("22.07.2021", "second text"), NoteData("19.07.2021", "third text"),
+ NoteData("18.07.2021", "forth text"), NoteData("12.07.2021", "fifth text"))

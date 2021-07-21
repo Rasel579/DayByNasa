@@ -4,4 +4,5 @@
     <dimen name="normal_padding">10dp</dimen>
     <dimen name="margin_navigation">8dp</dimen>
     <dimen name="margin_chip">10dp</dimen>
+    <dimen name="item_note_padding">10dp</dimen>
 </resources>

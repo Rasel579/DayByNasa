@@ -20,4 +20,6 @@
     <string name="pause_right">M37,23 L37,32 L37,41</string>
     <string name="pause_right_play">M26,23 L41,32 L27,41</string>
     <string name="clockwise_circle">M32,8 A24,24 0 1 1 31.99,8 z</string>
+    <string name="notes_hint_input">Enter your Note</string>
+    <string name="haiden_description_text"><![CDATA[Some interesting story about about space creation, most popular lorem ipsum ever< I must to wrote about 20 lines..]]></string>
 </resources>

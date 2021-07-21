@@ -108,9 +108,7 @@
                 app:endIconMode="custom"
                 app:helperText="@string/helper_wiki_text"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/nasa_image"
-              >
-
+                app:layout_constraintBottom_toTopOf="@+id/nasa_image">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_edit_text"
                     android:layout_width="match_parent"
@@ -118,7 +116,6 @@
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </androidx.core.widget.NestedScrollView>
-
     <include
         layout="@layout/bottomsheet_layout" />
 

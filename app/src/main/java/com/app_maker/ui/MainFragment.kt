@@ -13,7 +13,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import coil.api.clear
 import coil.api.load
-import com.app_maker.MainActivity
 import com.app_maker.R
 import com.app_maker.databinding.MainFragmentBinding
 import com.app_maker.extensions.Navigation
@@ -81,13 +80,23 @@ class MainFragment : Fragment(){
             android.R.id.home -> activity?.let {
                 BottomNavigationDrawerFragment().show(it.supportFragmentManager, TAG)
             }
+            R.id.app_bar_fav ->{
+                Navigation.navigate(this, R.id.container, NasaNotesFragment.newInstance())
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun setBottomSheetBehaviour(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_DRAGGING
+        bottomSheet.setOnClickListener{
+            isBottomSheetExpanded = !isBottomSheetExpanded
+            when(isBottomSheetExpanded){
+                true -> bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                false -> bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -107,7 +116,7 @@ class MainFragment : Fragment(){
     }
     private  fun setBottomAppBar(view: View?)= with(binding){
         val context = activity as MainActivity
-        context.setSupportActionBar(bottom_app_bar)
+        context.setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
         fab.setOnClickListener{
             if (isMain){
@@ -219,6 +228,7 @@ class MainFragment : Fragment(){
         private const val DAY_IN_MILLIS = 86400000
         private var isPlayingVideo = true
         private var isExpanded = false
+        private var isBottomSheetExpanded = false
         @SuppressLint("SimpleDateFormat")
         private val DATE = SimpleDateFormat("yyyy-MM-dd").format(Date())
     }

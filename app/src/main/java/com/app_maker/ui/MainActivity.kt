@@ -1,9 +1,9 @@
-package com.app_maker
+package com.app_maker.ui
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.app_maker.ui.MainFragment
+import com.app_maker.R
 
 class MainActivity : AppCompatActivity() {
    var isCustomTheme = false

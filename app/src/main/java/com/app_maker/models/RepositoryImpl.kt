@@ -1,12 +1,12 @@
 package com.app_maker.models
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.app_maker.BuildConfig
+import com.app_maker.models.databases.NasaNoteDatabase
+import com.app_maker.models.databases.NasaNoteEntity
 import com.app_maker.models.rest.*
+import com.app_maker.nasaFakeNotes
 import retrofit2.Callback
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RepositoryImpl : Repository {
     override fun getDataFromApi(callback: Callback<NasaPictureDTO>) {
@@ -28,4 +28,26 @@ class RepositoryImpl : Repository {
     override fun getDataFromMarsApi(callback: Callback<MarsMutableApiDTO>) {
         BackendRepo.api.getDataFromMarsApi(800, BuildConfig.NASA_APIKEY).enqueue(callback)
     }
+
+    override fun getNoteData(): List<NoteData> = convertEntityToObj(
+        NasaNoteDatabase.db.nasaNoteDAO().getAll()
+    )
+
+    private fun convertEntityToObj(entity: MutableList<NasaNoteEntity>): List<NoteData> =
+        entity.map {
+             NoteData(it.date, it.description)
+        }
+
+
+
+    override fun sendData(notes: NoteData){
+          NasaNoteDatabase.db.nasaNoteDAO().saveEntity(convertNoteDataToEntity(notes))
+    }
+
+    private fun convertNoteDataToEntity(notes: NoteData): NasaNoteEntity =
+       NasaNoteEntity(notes.date, notes.description)
+
+
+    override fun getFakeDataNotes() = nasaFakeNotes
+
 }
