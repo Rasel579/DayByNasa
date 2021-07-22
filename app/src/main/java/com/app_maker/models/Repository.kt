@@ -12,5 +12,4 @@ interface Repository {
     fun getDataFromMarsApi(callback: Callback<MarsMutableApiDTO>)
     fun getNoteData() : List<NoteData>
     fun sendData(notes : NoteData)
-    fun getFakeDataNotes() : MutableList<NoteData>
 }

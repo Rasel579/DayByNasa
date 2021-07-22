@@ -5,7 +5,6 @@ import com.app_maker.BuildConfig
 import com.app_maker.models.databases.NasaNoteDatabase
 import com.app_maker.models.databases.NasaNoteEntity
 import com.app_maker.models.rest.*
-import com.app_maker.nasaFakeNotes
 import retrofit2.Callback
 
 class RepositoryImpl : Repository {
@@ -35,7 +34,7 @@ class RepositoryImpl : Repository {
 
     private fun convertEntityToObj(entity: MutableList<NasaNoteEntity>): List<NoteData> =
         entity.map {
-             NoteData(it.date, it.description)
+             NoteData(it.date, it.description, it.expanded)
         }
 
 
@@ -45,9 +44,7 @@ class RepositoryImpl : Repository {
     }
 
     private fun convertNoteDataToEntity(notes: NoteData): NasaNoteEntity =
-       NasaNoteEntity(notes.date, notes.description)
+       NasaNoteEntity(0,notes.date, notes.description,  notes.isExpanded)
 
-
-    override fun getFakeDataNotes() = nasaFakeNotes
 
 }

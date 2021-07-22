@@ -22,7 +22,7 @@ class NasaViewModel (
             }
     fun sendNote(description: String){
         Thread{
-            repository.sendData(NoteData(DATE, description))
+            repository.sendData(NoteData(DATE, description, false))
         }.start()
     }
 

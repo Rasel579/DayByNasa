@@ -5,7 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class NasaNoteEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    val id : Int,
     val date : String,
-    val description : String
+    val description : String,
+    val expanded : Boolean
 )

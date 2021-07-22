@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/haiden_description_text"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
 
 </LinearLayout>

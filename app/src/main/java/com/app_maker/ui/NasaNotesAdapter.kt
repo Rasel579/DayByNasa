@@ -21,18 +21,19 @@ class NasaNotesAdapter(
     private var data : MutableList<NoteData>,
     private val onStartDrag : OnStartDragListener
 ) : RecyclerView.Adapter<NasaNotesAdapter.ItemNote>(), ItemTouchHelperAdapter {
+    @SuppressLint("SimpleDateFormat")
     private val DATE = SimpleDateFormat("yyyy-MM-dd").format(Date())
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ItemNote(LayoutInflater.from(parent.context).inflate(R.layout.item_nasa_note, parent, false))
 
     override fun onBindViewHolder(holder: ItemNote, position: Int) {
-        data?.get(position)?.let { holder.bind(it) }
+        data[position].let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int = data.size
     fun addItem(description : String){
-        data.add(NoteData(DATE, description))
+        data.add(NoteData(DATE, description, false))
         notifyItemInserted(itemCount - 1)
     }
 
@@ -49,8 +50,6 @@ class NasaNotesAdapter(
     }
 
     inner class ItemNote(itemView : View) : RecyclerView.ViewHolder(itemView), ItemTouchViewHolder{
-
-        private var isExpanded = false
 
         @SuppressLint("ClickableViewAccessibility")
         fun bind(noteData: NoteData) {
@@ -90,11 +89,13 @@ class NasaNotesAdapter(
             }
         }
         private fun toggleText(itemView: View) {
-               isExpanded = !isExpanded
-               if (isExpanded){
+
+               if (data[layoutPosition].isExpanded){
                    itemView.hiden_description.visibility = View.VISIBLE
+                   data[layoutPosition].isExpanded = !data[layoutPosition].isExpanded
                } else {
                    itemView.hiden_description.visibility = View.GONE
+                   data[layoutPosition].isExpanded = !data[layoutPosition].isExpanded
                }
             notifyItemChanged(layoutPosition)
         }
