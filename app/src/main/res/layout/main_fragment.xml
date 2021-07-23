@@ -52,13 +52,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/chip_current_day_text"/>
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/info_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/chip_info_day_text"/>
-
             </LinearLayout>
             <ImageView
                 android:id="@+id/picture_of_the_day"
@@ -102,13 +95,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="20dp"
                 android:hint="@string/search_on_wiki"
                 app:endIconDrawable="@drawable/ic_wikipedia"
                 app:endIconMode="custom"
                 app:helperText="@string/helper_wiki_text"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/nasa_image">
+                app:layout_constraintBottom_toTopOf="@+id/nasa_image"
+                app:layout_constraintVertical_bias="0.1">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_edit_text"
                     android:layout_width="match_parent"
@@ -141,7 +135,7 @@
         android:layout_height="match_parent"
         android:background="@color/icon_text_color"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ProgressBar
             style="?android:attr/progressBarStyleLargeInverse"

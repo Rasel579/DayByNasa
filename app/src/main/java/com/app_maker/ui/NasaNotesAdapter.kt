@@ -101,7 +101,7 @@ class NasaNotesAdapter(
         }
 
         override fun onItemSelected() {
-            itemView.setBackgroundColor(Color.GRAY)
+            itemView.setBackgroundColor(Color.LTGRAY)
         }
 
         override fun onItemClear() {

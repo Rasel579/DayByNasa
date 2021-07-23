@@ -2,15 +2,21 @@ package com.app_maker.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.transition.*
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.text.buildSpannedString
 import coil.api.clear
 import coil.api.load
 import com.app_maker.R
@@ -142,7 +148,10 @@ class MainFragment : Fragment(){
                 binding.loadingPage.visibility = View.GONE
                data = appState.dataFromNasa
                 showMedia(data)
-                bottom_sheet_description_header.text = data?.title
+                val span = SpannableString(data?.title).apply {
+                    setSpan(ForegroundColorSpan(Color.RED), 0,7,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                }
+                bottom_sheet_description_header.setText(span, TextView.BufferType.SPANNABLE)
                 bottom_sheet_description.text = data?.explanation
             }
             is AppState.Loading ->{
