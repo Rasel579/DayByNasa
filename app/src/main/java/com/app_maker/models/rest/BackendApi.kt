@@ -6,7 +6,8 @@ import retrofit2.http.Query
 
 interface BackendApi {
    @GET("planetary/apod")
-   fun getDataFromNasa(@Query("api_key") apiKey: String) : Call<NasaPictureDTO>@GET("planetary/apod")
+   fun getDataFromNasa(@Query("api_key") apiKey: String) : Call<NasaPictureDTO>
+   @GET("planetary/apod")
    fun getDataFromNasaPreviousDate(@Query("date") date : String, @Query("api_key") apiKey: String) : Call<NasaPictureDTO>
    @GET("EPIC/api/natural/date/")
    fun getDataFromNasaEpicApi(@Query("date") date: String, @Query("api_key") apiKey: String): Call<MutableList<NasaEpicDTO>>

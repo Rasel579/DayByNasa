@@ -45,13 +45,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textStyle="bold"
+                    android:textFontWeight="800"
                     android:text="@string/chip_previous_day_text" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/current_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:layout_weight="1"
                     android:text="@string/chip_current_day_text"/>
             </LinearLayout>
