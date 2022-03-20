@@ -1,6 +1,5 @@
 package com.app_maker.view_models
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app_maker.models.Repository
@@ -18,7 +17,7 @@ class MainViewModel(
        liveData.value = AppState.Loading
        val callbackFromRetrofit = object : Callback<NasaPictureDTO> {
            override fun onResponse(call: Call<NasaPictureDTO>, response: Response<NasaPictureDTO>) {
-               if (response.isSuccessful){
+               if (response.isSuccessful && response.body() != null){
                    liveData.postValue(
                        response.body()?.let { AppState.Success(it) }
                    )

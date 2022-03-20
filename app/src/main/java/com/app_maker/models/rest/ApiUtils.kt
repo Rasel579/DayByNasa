@@ -1,13 +1,12 @@
 package com.app_maker.models.rest
 
 import com.app_maker.baseNasaUrl
-import okhttp3.Dns
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
 object ApiUtils {
     val baseUrl = baseNasaUrl
-    val duration = 1000L
+    val duration = 2000L
     fun getOkHTTPBuilderWithHeaders() : OkHttpClient {
         val httpClient =  OkHttpClient.Builder()
         httpClient.apply {

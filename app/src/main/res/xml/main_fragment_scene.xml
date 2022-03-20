@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/wiki_button"
+          />
+        <Constraint android:id="@+id/input_layout"
+           app:layout_constraintStart_toEndOf="parent"
+            android:layout_width="wrap_content" />
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/wiki_button"
+            android:visibility="gone"/>
+        <Constraint android:id="@+id/input_layout"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/start_chip">
+        <Constraint android:id="@+id/info_day"/>
+        <Constraint android:id="@id/chips_group"/>
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/end_chip">
+        <Constraint android:id="@id/info_day"/>
+        <Constraint
+            android:id="@+id/info_day"
+            android:visibility="invisible"/>
+    </ConstraintSet>
+
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="1000"
+        >
+        <OnClick app:targetId="@+id/wiki_button"/>
+       />
+    </Transition>
+    <Transition app:constraintSetEnd="@+id/start"
+        app:constraintSetStart="@id/end"
+        app:duration="1000"
+        app:layoutDuringTransition="honorRequest">
+        <OnSwipe app:dragDirection="dragRight" app:touchAnchorId="@id/input_layout" app:touchRegionId="@id/input_layout"/>
+    </Transition>
+    <Transition app:constraintSetStart="@+id/start_chip"
+                app:constraintSetEnd="@id/end_chip"
+                app:autoTransition="animateToEnd"
+                app:duration="1000">
+        <OnClick app:targetId="@+id/info_day" app:clickAction="toggle"/>
+    </Transition>
+</MotionScene>
